@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Student Home </title> 
+       <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+       <style>
+       </style>
+    </head>
+
+<body>
+    <header>
+        <div class = "site-logo">
+          <h1>Village Inn University</h1>
+        </div>
+      </header>
+  
+      <div class = "topnav">
+        <a href = "/"> Go Home </a>
+        <a href = "/studentInfo"> Account Information </a>
+        <a href = "/logout"> Logout </a>
+      </div>  
+    <h1>Student Page</h1>
+    <div>
+        <h1>Profile</h1>
+        <p>Name: {{message['fname']}} {{message['lname']}}</p>
+        <p>Email: {{message['email']}}</p>
+        <p>Role: {{message['role']}}</p>
+        <p>Program: {{message['program']}}</p>
+    </div>
+    <div>
+        <p><a href="/formOne">Apply for Graduation</a></p><br>
+    </div>
+
+
+
+</body>
+</html>

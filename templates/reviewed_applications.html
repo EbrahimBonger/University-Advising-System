@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Reviewed Applications</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+
+  </head>
+  
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h3>Reviewed Applications</h3>
+      {% if apps %}
+        <table>
+
+          <tr>
+              <th>Name</th>
+              <th>Submitted</th>
+            </tr>
+          <tr>
+
+          {% for i in range(apps|length) %}
+            <th>
+                <a href="{{url_for('renderDecisionApps', UID=apps[i].UID)}}">{{apps[i].fname}} {{apps[i].lname}}</a>
+            </th>
+            <th>{{apps[i].submitted}}</th>
+          </tr>
+
+          {% endfor %}
+        </table>
+
+      {% else %}
+
+        <p>No applications to render decision for</p>
+
+      {% endif %}
+
+  </body>
+</html>

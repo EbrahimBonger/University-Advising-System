@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <title>Active Applications</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <form action="{{url_for('viewAppsApps')}}" method="POST">
+
+      <h3>Show by degree:</h3>
+      <input type="radio" id="masters" name="degree" value="masters" required></input>
+      <label for="1">Masters</label>
+      <input type="radio" id="phd" name="degree" value="phd" required></input>
+      <label for="2">PhD</label>  
+      <input type="radio" id="all" name="degree" value="all" required></input>
+      <label for="2">All</label>
+
+      <input type="submit" id="submit" name="submit" value="search">
+    </form>
+
+    <h3>Ready For Review</h3>
+      {% if apps %}
+        <table>
+
+          <tr>
+              <th>Name</th>
+              <th>Submitted</th>
+            </tr>
+          <tr>
+
+          {% for i in range(apps|length) %}
+            {% if apps[i].recommendations and apps[i].transcript and not apps[i].UID in reviewed %}
+              <th>
+                  <a href="{{url_for('viewApplicationApps', UID=apps[i].UID)}}">{{apps[i].fname}} {{apps[i].lname}}</a>
+              </th>
+              <th>{{apps[i].submitted}}</th>
+              </th>
+            </tr>
+            {% endif %}
+          {% else %}
+            <p>No applications ready for review</p>
+          {% endfor %}
+        </table>
+
+      {% endif %}
+
+    <h3>All Active Applications</h3>
+      {% if apps %}
+        <table>
+
+          <tr>
+              <th>Name</th>
+              <th>Submitted</th>
+              <th>Transcript</th>
+              <th>Recommendations</th>
+            </tr>
+          <tr>
+
+          {% for i in range(apps|length) %}
+            <th>
+                <a href="{{url_for('viewApplicationApps', UID=apps[i].UID)}}">{{apps[i].fname}} {{apps[i].lname}}</a>
+            </th>
+            <th>{{apps[i].submitted}}</th>
+            <th>
+              {% if apps[i].transcript %}
+                Recieved
+              {% else %}
+                Missing
+              {% endif %}
+            </th>
+            <th>
+              {% if apps[i].recommendations %}
+                Recieved
+              {% else %}
+                Missing
+              {% endif %}
+            </th>
+          </tr>
+
+          {% endfor %}
+        </table>
+
+      {% else %}
+
+        <p>No active applications</p>
+
+      {% endif %}
+
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>New Applicant</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style> 
+      h2 {text-align:center};
+    </style>
+    <script>
+      function checkPassword() {
+        if (document.forms["register"]["password"].value != document.forms["register"]["password2"].value) {
+          alert("Passwords must match");
+          return false;
+        }
+      }
+    </script>
+
+
+  </head>
+    <body>
+    <div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://purepng.com/public/uploads/large/purepng.com-pancakepancakehotcakegriddlecakeflapjack-1411528393734pc1df.png"/>
+            </div>
+            <form method="post", action = "{{url_for('applicantRegisterApps')}}" onsubmit = "return checkPassword()">
+                <h3>Register an Account</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" for = "username" class="form-control" placeholder="Email" value="" id = "username" name = "username" placeholder = "Email" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password" value="" id = "password" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password2" class="form-control" placeholder="Retype Password" value="" id = "password2" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Register" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+          {% if message %}
+            <h2>{{ message }}</h2>
+        {% endif %}
+        <h2 style="text-align:center">Return to <a href="{{url_for('login')}}">Login</a></h2>
+        <br>
+      </div>
+  </body>
+</html>

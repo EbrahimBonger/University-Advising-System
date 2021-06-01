@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>Application Form</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h1 style="text-align:center">Application Form</h1>
+    <div class="application">
+      <form action="{{url_for('applicationApps')}}" method="POST">
+
+        <h3 style="text-align:center">Personal Information</h3>
+        
+        First name:<br>
+        <input type='text' id='fname' name='fname' required><br>
+        Last name:<br>
+        <input type='text' id='lname' name='lname' required><br>
+
+        Address:<br>
+        <input type='text' id='address' name='address' required><br>
+
+        SSN:<br>
+        <input type='number' id='SSN' name='SSN' pattern='[0-9]{9}' required><br>
+
+        Phone Number:<br>
+        <input type='tel' id='phone' name='phone' pattern='[0-9]{10}' required>
+        <br><br>
+
+        <h3 style="text-align:center">Academic Information</h3>
+
+        Semester and Year of application:<br>
+        <label for='admission_fall'> Fall </label>
+        <input type='radio' id='admission_fall' name='admission_semester' value='FA' required>
+        <label for='admission_spring'> Spring </label>
+        <input type='radio' id='admission_spring' name='admission_semester' value='SP' required>
+        <label for='admission_year'> Year </label>
+        <input type='number' id ='admission_year' name='admission_year' min='2021' style="width: 60px;" required>
+        <br><br>
+
+        Applying for Degree:<br>
+        <input type='radio' id='MS' name='degree_apply' value='MS' required>
+        <label for='MS'> MS </label>
+        <input type='radio' id='PHD' name='degree_apply' value='PHD' required>
+        <label for='PHD'> PHD </label>
+        <br><br>
+
+        GRE:<br>
+        Verbal:
+        <input type='number' id='verbal' name='verbal' min='130' max='170' required>
+        Quantitative:
+        <input type='number' id='quant' name='quant' min='130' max='170' required>
+        <br><br>
+
+        <!--might need to add year of exam of GRE and GRE advanced and TOEFL-->
+
+        Prior Degrees:<br>
+        <input type='checkbox' id='type_MS' name='type_MS' value='MS'>
+        <label for='MS'> MS </label><br>
+        
+        GPA:
+        <input type='number' step="0.01" id='MS_GPA' name='MS_GPA' min=0.0 max = 4.0><br>
+        Major:
+        <input type='text' id='MS_major' name='MS_major'><br>
+        Year:
+        <input type='number' id='MS_prior_year' name='MS_prior_year'><br>
+        <!--need to add year of prior GPA in the database schema-->
+        University:
+        <input type='text' id='MS_school' name='MS_school'><br>
+
+
+
+        <input type='checkbox' id='type_B' name='type_BA' value='Bachelors'>
+        <label for='bachelors'> BS/BA </label><br>
+        
+        GPA:
+        <input type='number' step="0.01" id='B_GPA' name='B_GPA' min=0.0 max = 4.0><br>
+        Major:
+        <input type='text' id='B_major' name='B_major'><br>
+        Year:
+        <input type='number' id='B_prior_year' name='B_prior_year'><br>
+        <!--need to add year of prior GPA in the database schema-->
+        University:
+        <input type='text' id='B_school' name='B_school'><br><br>
+
+        <label for='interest'>Areas of interest:</label><br>
+        <textarea id='interest' name='interest' rows='4' cols='50' required></textarea>
+        <br><br>
+        <!--add this too-->
+        <label for='priorWork'>Experience:</label><br>
+        <textarea id='priorWork' name='priorWork' rows='4' cols='50' required></textarea>
+        <br><br>
+
+        <input type="submit" name="submit">
+
+        <script>
+          document.getElementById("type_MS").addEventListener('change', function() {
+            if (this.checked) {
+              document.getElementById("MS_GPA").required = true;
+              document.getElementById("MS_prior_year").required = true;
+              document.getElementById("MS_school").required = true;
+              document.getElementById("MS_major").required = true;
+            }
+            else {
+              document.getElementById("MS_GPA").required = false;
+              document.getElementById("MS_prior_year").required = false;
+              document.getElementById("MS_school").required = false;
+              document.getElementById("MS_major").required = false;
+            }
+          })
+
+          document.getElementById("type_B").addEventListener('change', function() {
+            if (this.checked) {
+              document.getElementById("B_GPA").required = true;
+              document.getElementById("B_prior_year").required = true;
+              document.getElementById("B_school").required = true;
+              document.getElementById("B_major").required = true;
+            }
+            else {
+              document.getElementById("B_GPA").required = false;
+              document.getElementById("B_prior_year").required = false;
+              document.getElementById("B_school").required = false;
+              document.getElementById("B_major").required = false;
+            }
+          })
+        </script>
+
+        <!--Looking at the sample review data, it seems like some of the stuff on the bottom end like recommendation letter rating and grad review comes in after the fact of the form review so I did not add them here just yet.-->
+
+
+      </form>
+    </div>
+  </body>
+</html>

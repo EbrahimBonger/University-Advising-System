@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Email</title>
+  </head>
+  <body>
+    <p>
+        To: {{email}}<br>
+        From: no-reply@university-admissions.edu<br><br>
+
+        To whom it may concern,<br><br>
+
+        {{fname}} {{lname}} has requested you submit a letter of recommendation on their behalf for admission to Univeristy Univeristy.<br>
+
+        If you are willing to do so, submit your recommendation <a href="{{url_for('submitRecApps', UID=uid)}}">Here!</a><br><br>
+
+
+        Thank you for your consideration,<br>
+        Univeristy Admissions
+
+    </p>
+  </body>
+</html>

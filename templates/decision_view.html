@@ -1,0 +1,93 @@
+<head>
+    <title>Render Decision</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <div class="application">
+
+      <h2>Applicant Information</h2>
+      <p>
+        UID: {{applicant.UID}}<br>
+        Name: {{applicant.fname}} {{applicant.lname}}<br>
+        Address: {{applicant.address}}<br>
+        SSN: {{applicant.SSN}}<br>
+        Phone: {{applicant.phone}}<br>
+      </p>
+
+      <h2>Reviewer Ratings</h2>
+      {% for i in range(reviews|length) %}
+        <p>
+          Reviewer: {{reviews[i].email}}<br>
+          Letter Rating: {{reviews[i].letterrating}}<br>
+          Recommendation: {{reviews[i].recommendation}}<br>
+          Comments:
+          <p>{{reviews[i].comments}}<br></p><br>
+        {% endfor %}
+        </p>
+
+
+      <h2>Final Decision</h2>
+      <form name="form" action="{{url_for('renderDecisionApps', UID=applicant.UID)}}" method="POST">
+        
+          <label for="reject">Reject</label>
+          <input type="radio" id=reject name=decision value="Reject" required></input><br>
+          <label for="borderline">Borderline Admit</label>
+          <input type="radio" id=borderline name=decision value="Borderline Admit" required></input><br>
+          <label for="without">Admit Without Aid</label>
+          <input type="radio" id=without name=decision value="Admit without Aid" required></input><br>
+          <label for="with">Admit With Aid</label>
+          <input type="radio" id=with name=decision value="Admit with Aid" required></input><br>
+
+          <label for='comments'>Comments:</label><br>
+          <textarea id='comments' name='comments' rows='4' cols='50' required></textarea><br>
+
+        <div id="admit" style="display: none;">
+          <label for="major">Major:</label><br>
+          <input type="text" id="major" name="major"></input><br>
+          <label for="advisor">Advisor:</label><br>
+          <select id="advisor" name="advisor">
+            {% for i in range(advisors|length) %}
+              <option value="{{advisors[i].UID}}">{{advisors[i].fname}} {{advisors[i].lname}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <input type = "submit"></input>
+      </form>
+
+        <script>
+          var radios = document.forms["form"].elements["decision"];
+          for(radio in radios) {
+            console.log(radios[radio].value);
+            if (radios[radio].value == "Reject") {
+              radios[radio].onclick = function() {
+                document.getElementById("major").required = false;
+                document.getElementById("advisor").required = false;
+                document.getElementById("admit").style.display = "none";
+              }
+            }
+            else {
+              radios[radio].onclick = function() {
+                document.getElementById("major").required = true;
+                document.getElementById("advisor").required = true;
+                document.getElementById("admit").style.display = "block";
+              }
+            }
+          }
+        </script>
+    <br>
+  </body>
+</html>

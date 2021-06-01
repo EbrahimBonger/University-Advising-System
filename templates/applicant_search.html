@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Find an applicant</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <p>Search for an Applicant by UID</p>
+    <form action="{{url_for('findApplicantApps')}}" method="post">
+        <input id="searchBox" type="text" name="searchQ">
+        <input id="searchButton" type="submit" name="Search">
+    </form>
+
+    {% if error %}
+        <p>Applicant not found</p>
+    {% endif %}
+
+    <br>
+  </body>
+</html>

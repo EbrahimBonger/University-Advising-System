@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <title> Student Home </title> 
+     <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+     <style>
+     </style>
+  </head>
+  
+  <body>
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/"> Go Home </a>
+      <a> Alumni </a>
+      <a href = "/accountInfoAds"> Account Information </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    {% if profile %}
+        <h3>UID: {{profile['UID']}}</h3>
+        <h3>Name: {{profile['fname']}} {{profile['lname']}}</h3>
+        <h3>Email: {{profile['email']}}</h3>
+
+    {% endif %}
+
+    </div>
+  </body>
+</html>

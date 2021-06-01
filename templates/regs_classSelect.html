@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+            <title>Select Classes</title>
+            <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+        </head>
+        <body>
+
+
+            <header>
+                <div class = "site-logo">
+                    <h1>Village Inn University</h1>
+                </div>
+            </header>
+        
+            <div class = "topnav">
+                <a href = "/"> Go Home </a>
+                <a href = "/studentInfo"> Account Information </a>
+                <a href = "/logout"> Logout </a>
+            </div>
+
+            <br>
+
+            <table class = "tablecenter" cellpadding = "10" cellspacing = "5">
+                <tbody>
+                    <tr>
+                        <th>Department</th>
+                        <th>Course Number</th>
+                        <th>Title</th>
+                        <th>Go To Students</th>
+                    </tr>
+                    <tr>
+                        {% for class in classes %}
+                            <td>{{class.department}} </td>
+                            <td>{{class.courseNum}} </td>
+                            <td>{{class.title}} </td>
+                            <td><a href="{{ url_for('studentSelect', course=class.courseID, uid=1)}}" class = "submitLogin">Students</a></td>
+                    </tr>
+                        {%endfor%}
+                </tbody>
+                </table>
+        </body>
+    </html>

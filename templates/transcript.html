@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<h2>Transcript</h2>
+
+<div class="transcript">
+    <datalist id="uid" >
+        {% for key, value in session['faculty']['applications'].items(): %}
+
+
+
+        <div>
+            <option value="{{key}}"></option>
+            <label for="uid"></label>
+            <input id="form-input" type="hidden" name="uid" value="{{ key }}">
+            
+        </div>
+        {% endfor %}
+    </datalist>
+</div>
+
+
+<div>
+    <a href='/login'>
+        <span class="glyphicon glyphicon-success"></span>Go Back
+    </a>
+</div>
+
+<body>
+    
+</body>
+</html>

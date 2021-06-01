@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+  <head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, intial-scale = 1">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Login Page </title>
+  </head>
+  
+  <body>
+  <div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://purepng.com/public/uploads/large/purepng.com-pancakepancakehotcakegriddlecakeflapjack-1411528393734pc1df.png">
+            </div>
+            <form method="post" action = "/login">
+                <h3>Welcome To Village Inn University</h3>
+
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Email" value="" id = "email" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password" value="" id = "password" required/>
+                        </div>
+                         <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Log In" />
+                        </div>
+                      </div>
+                        <br>
+                      <div class = "col-md-6">
+                        <div class="form-group">
+                            <p> Prospective Student? <p>
+                            <a href = "admissions/register" class = "btnContact"> Apply Here! </a>
+                        </div>
+                      </div>
+                </div>
+            </form>  
+</body>
+</html>

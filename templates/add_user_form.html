@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Add New User</title>
+  </head>
+  <body>
+    <h3>Create New User</h3>
+    <form action="{{url_for('addUserApps')}}" method="POST">
+    <!-- Add form here asking for needed info -->
+      <label for='role_app'> Applicant </label>
+      <input type='radio' id='role_app' name='role' value='0' required><br>
+      <label for='role_gs'> Grad Secretary </label>
+      <input type='radio' id='role_gs' name='role' value='4' required><br>
+      <label for='role_cac'> CAC </label>
+      <input type='radio' id='role_cac' name='role' value='6' required><br>
+      <label for='role_fac'> Faculty </label>
+      <input type='radio' id='role_fac' name='role' value='3' required><br>
+      <br>
+      <label for="username">Email</label><br>
+      <input type="email" id="username" name="username" required><br>
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password" required><br>
+      <input type="submit" id="submit" name="submit">
+    </form>
+
+    {% if message %}
+    <h4>{{ message }}</h4>
+    {% endif %}
+
+  </body>
+</html>

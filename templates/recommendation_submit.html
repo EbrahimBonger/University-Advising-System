@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Recommendation Letter Submission</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h1 id="heading" style="text-align:center">Recommendation Letter Submission Form</h1>
+    <div class="application">
+      <form action="{{url_for('submitRecApps', UID=uid)}}" method="POST" enctype="multipart/form-data">
+        
+        First name:<br>
+        <input type='text' id='fname' name='fname' required><br>
+        Last name:<br>
+        <input type='text' id='lname' name='lname' required><br>
+
+        Email:<br>
+        <input type='text' id='email' name='email' required><br>
+
+        Affiliation:<br>
+        <input type='text' id='affil' name='affil' required><br>
+
+        Title:<br>
+        <input type='text' id='title' name='title' required><br>
+
+        <label for='content'>Upload your letter (PDF Files Only):</label><br>
+        <input type="file" name="file" accept=".pdf" required>
+        <br><br>
+
+        <input type="submit" name="submit">
+
+        {% if badfile %}
+          <p>Please upload pdf files only</p>
+        {% endif %}
+
+      </form>
+    </div>
+  </body>
+</html>

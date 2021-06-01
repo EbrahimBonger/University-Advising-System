@@ -1,0 +1,132 @@
+<!-- Need general html template so that when a review clicks a applicant it will use their id or name to display their application.
+xxx will be replaced with things from tables to display a users application.-->
+
+<html>
+  <head>
+    <title>Application</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <div class="application">
+      <h2>Application Information</h2>
+
+      {% if applicant and (role == 0 or role == 4) %}
+        Update application information <a href="{{url_for('updateAppApps',UID=applicant.UID)}}">Here</a>
+      {% endif %}
+
+      <p>
+        <h3>Application Overview</h3>
+        UID: {{user.UID}}<br>
+        Name: {{user.fname}} {{user.lname}}<br>
+        Address: {{user.address}}<br>
+        SSN: {{user.SSN}}<br>
+        Phone: {{user.phone}}<br>
+      </p>
+
+      <p>
+        Degree Sought: {{applicant.degreeSought}}<br>
+        Admission Semester: {{applicant.admissionSemester}}<br>
+      </p>
+
+      <p>Experience:<br>{{applicant.priorWork}}<br></p>
+      <p>Interests:<br>{{applicant.interests}}<br></p>
+
+      <h3>Prior Degrees:</h3>
+      {% if degrees %}
+        {% for i in range(degrees|length) %}
+          <p>
+            Type: {{degrees[i].type}}<br>
+            Major: {{degrees[i].major}}<br>
+            School: {{degrees[i].school}}<br>
+            GPA: {{degrees[i].GPA}}<br>
+            Year: {{degrees[i].yearObtained}}<br>
+          </p>
+        {% endfor %}
+      {% else %}
+          <p>None Submitted</p>
+      {% endif %}
+
+      <p>
+        <h3>GRE:</h3>
+        Verbal: {{applicant.GREverbal}}<br>
+        Quantitative: {{applicant.GREquant}}<br>
+      </p>
+
+
+      
+      {% if (role == 6 or role == 3) and not reviewed %}
+
+      {% if applicant.transcript %}
+        <h3>Transcript:</h3>
+        <a href="{{url_for('getTranscriptApps',filename=applicant.transcript_path)}}">view transcript</a>
+      {% endif %}
+
+      {% if recs %}
+      <h3>Recommendation Letters:</h3>
+      {% for i in range(recs|length) %}
+        <p>
+          Recommender Name: {{recs[i].recFname}} {{recs[i].recLname}}<br>
+          Recommender Email: {{recs[i].email}}<br>
+          Recommender Title: {{recs[i].recLname}}<br>
+          Affiliation with Applicant: {{recs[i].affiliation}}<br>
+          Submitted: {{recs[i].submitted}}<br>
+          <a href="{{url_for('getRecApps', filename=recs[i].content)}}">Letter</a><br>
+        </p>
+          {% endfor %}
+      {% endif %}
+
+        <h2>Review Form</h2>
+        <form action="{{url_for('viewApplicationApps', UID=applicant.UID)}}" method="POST">
+          
+          <h3>Letter Rating</h3>
+          
+          <input type="radio" id=1 name=rating value="1" required></input>
+          <label for="1">Not Credible</label><br>
+          <input type="radio" id=2 name=rating value="2" required></input>
+          <label for="2">Poorly Written</label><br>    
+          <input type="radio" id=3 name=rating value="3" required></input>
+          <label for="3">Average</label><br>
+          <input type="radio" id=4 name=rating value="4" required></input>
+          <label for="4">Good</label><br>        
+          <input type="radio" id=5 name=rating value="5" required></input>
+          <label for="5">Excellent</label><br>
+
+          <h3>Recommendation</h3>
+          <input type="radio" id=reject name=decision value="1" required></input>
+          <label for="reject">Reject</label><br>
+          <input type="radio" id=borderline name=decision value="2" required></input>
+          <label for="borderline">Borderline Admit</label><br>
+          <input type="radio" id=without name=decision value="3" required></input>
+          <label for="without">Admit Without Aid</label><br>
+          <input type="radio" if=with name=decision value="4" required></input>
+          <label for="with">Admit With Aid</label><br><br>
+
+          <label for='comments'>Comments:</label><br>
+          <textarea id='comments' name='comments' rows='4' cols='50' required></textarea><br><br>
+
+          <input type="submit" id="submit" name="submit">
+        </form>
+
+        <a href="{{url_for('facultyPortalApps')}}">Return to Portal</a>
+
+      {% elif role == 0 %}
+        <a href="{{url_for('appPortalApps')}}">Return to Portal</a>
+      {% elif role == 4 %}
+        <a href="{{url_for('facultyPortalApps')}}">Return to Portal</a>
+      {% endif %}
+      <br>
+      </div>
+  </body>
+</html>

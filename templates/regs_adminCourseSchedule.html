@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Admin Course Schedule </title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  
+  <body>
+
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/"> Go Home </a>
+      <a href = "/studentInfo"> Account Information </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+        <p style = "font-size:25px"> The current semester is: {{time['semester']}} <p>
+        <p style = "font-size:25px"> The current year is: {{time['academicYear']}} <p>
+        <form action = '/adminCourseSchedule' method = 'POST'>
+            <label for="semester" style = "font-size:25px">Change Semester</label>
+            <select name="semester" id="semester">
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value = "Summer">Summer</option>
+            </select>
+
+            <br>
+
+            <label for = "year" style = "font-size:25px"> Change Year </label>
+            <select name = "year" id = "year">
+            <option value = "2022">2022</option>
+            <option value = "2023">2023</option>
+            <option value = "2024">2024</option>
+            <option value = "2025">2025</option>
+            </select>
+            
+            <br>
+
+            <button type = "submit" class = "submitLogin">submit</button>
+        </form>
+  </body>
+</html>

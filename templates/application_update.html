@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>Application</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <div class="application">
+
+      
+      <h3>Update any of the following information</h3>
+      
+
+      {% if message %}
+        <h4>Information Updated</h4>
+      {% endif %}
+      {% if badfile %}
+        <h4>Upload PDF files only</h4>
+      {% endif %}
+
+      <form action="{{url_for('updateAppApps',UID=UID)}}" method="post" enctype="multipart/form-data">
+
+        {% if role == 4 %}
+          <label for="transcript">Transcript submitted</label>
+          <input type="checkbox" id=transcript name=transcript value="1"></input><br>
+          <input type="file" id="file" name="file" accept=".pdf" style="display: none;" value="Submit Transcript"><br><br>
+        {% endif %}
+
+        Address:<br>
+        <input type='text' id='address' name='address'><br>
+
+        Phone Number:<br>
+        <input type='tel' id='phone' name='phone' pattern='[0-9]{10}'>
+        <br><br>
+
+        GRE:<br>
+        Verbal:
+        <input type='number' id='verbal' name='verbal' min='130' max='170'>
+        Quantitative:
+        <input type='number' id='quant' name='quant' min='130' max='170'>
+        <br><br>
+    
+          Prior Degrees:<br>
+          <input type='checkbox' id='type_MS' name='type_MS' value='MS'>
+          <label for='MS'> MS </label><br>
+          GPA:
+          <input type='number' step="0.01" id='MS_GPA' name='MS_GPA' min=0.0 max = 4.0><br>
+          Major:
+          <input type='text' id='MS_major' name='MS_major'><br>
+          Year:
+          <input type='number' id='MS_prior_year' name='MS_prior_year'><br>
+          <!--need to add year of prior GPA in the database schema-->
+          University:
+          <input type='text' id='MS_school' name='MS_school'><br>
+    
+          <input type='checkbox' id='type_BA' name='type_BA' value='Bachelors'>
+          <label for='bachelors'> BS/BA </label><br>
+          GPA:
+          <input type='number' step="0.01" id='B_GPA' name='B_GPA' min=0.0 max = 4.0><br>
+          Major:
+          <input type='text' id='B_major' name='B_major'><br>
+          Year:
+          <input type='number' id='B_prior_year' name='B_prior_year'><br>
+          <!--need to add year of prior GPA in the database schema-->
+          University:
+          <input type='text' id='B_school' name='B_school'><br><br>
+
+
+          <label for='interest'>Areas of interest:</label><br>
+          <textarea id='interest' name='interest' rows='4' cols='50' ></textarea>
+          <br><br>
+          <!--add this too-->
+          <label for='priorWork'>Experience:</label><br>
+          <textarea id='priorWork' name='priorWork' rows='4' cols='50' ></textarea>
+          <br><br>
+
+
+          <input type="submit" name="submit"><br><br>
+          <a href="{{url_for('viewApplicationApps', UID=UID)}}">Return to Application</a>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("type_MS").addEventListener('change', function() {
+        if (this.checked) {
+          document.getElementById("MS_GPA").required = true;
+          document.getElementById("MS_prior_year").required = true;
+          document.getElementById("MS_school").required = true;
+          document.getElementById("MS_major").required = true;
+        }
+        else {
+          document.getElementById("MS_GPA").required = false;
+          document.getElementById("MS_prior_year").required = false;
+          document.getElementById("MS_school").required = false;
+          document.getElementById("MS_major").required = false;
+        }
+      })
+
+      document.getElementById("type_BA").addEventListener('change', function() {
+        if (this.checked) {
+          document.getElementById("B_GPA").required = true;
+          document.getElementById("B_prior_year").required = true;
+          document.getElementById("B_school").required = true;
+          document.getElementById("B_major").required = true;
+        }
+        else {
+          document.getElementById("B_GPA").required = false;
+          document.getElementById("B_prior_year").required = false;
+          document.getElementById("B_school").required = false;
+          document.getElementById("B_major").required = false;
+        }
+      })
+
+      document.getElementById("transcript").addEventListener('change', function() {
+        if (this.checked) {
+          document.getElementById("file").required = true;
+          document.getElementById("file").style.display = "block";
+        }
+        else {
+          document.getElementById("file").required = false;
+          document.getElementById("file").style.display = "none";
+        }
+      })
+
+    </script>
+
+    <br>
+  </body>
+</html>
+    

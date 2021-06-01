@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Student Home </title> 
+       <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+       <style>
+       </style>
+    </head>
+
+<body>
+    <header>
+        <div class = "site-logo">
+          <h1>Village Inn University</h1>
+        </div>
+      </header>
+  
+      <div class = "topnav">
+        <a href = "/"> Go Home </a>
+        <a>Grad. Sec </a>
+        <a href = "/studentInfo"> Account Information </a>
+        <a href = "/logout"> Logout </a>
+      </div>    
+    <div>
+    
+
+
+    <div>
+        <p><a href="/getStudentList">See applicants</a></p><br>
+    </div>
+
+    
+    <!-- <div>
+        <p><a href="/assignAdvisor">Assign Advisor</a></p><br>
+    </div> -->
+
+    <div>
+        {% if session['student_list']%}
+        <h1>Transcript</h1>
+        <div class="transcript">
+        <form id="transcript-form-group" action="/get_transcript" method="POST" class="transcript-form-one">
+            
+    
+            <input type="transcript-form-control" name="uid2" list="uid2" placeholder="Display transcript..."  autocomplete="off" required>
+        
+            <datalist id="uid2" >
+                {% for key in session['student_list']: %}
+        
+        
+        
+                <div>
+                    <option value="{{key['uid']}}"></option>
+                    <label for="uid2"></label>
+                    <input id="transcript-form-input" type="hidden" name="uid2" value="{{key['uid']}}">
+                    
+                </div>
+                {% endfor %}
+            </datalist>
+    
+            <input id="transcript-form-group" type="submit" value="Select">    
+    
+        </form>
+        </div>
+        
+    
+        {% endif %}
+        
+
+        <div>
+{% if courses %}
+<h2>Transcript</h2>
+<h3>UID: {{uid}}</h3>
+<h3>GPA: {{gpa}}</h3><br>
+
+<table>
+    <thead>
+        <th>Dept</th>
+        <th>Course ID</th>
+        <th>Credits</th>
+        <th>Grade</th>
+        <th>Semester</th>
+    </thead>
+
+{% for course in courses: %}
+
+<tbody>
+    <td>{{course['dept']}}</td>
+    <td>{{course['course_id']}}</td>
+    <td>{{course['credits']}}</td>
+    <td>{{course['grade']}}</td>
+    <td>{{course['semester']}}</td>
+</tbody>
+
+{% endfor %}
+</table>
+
+
+
+{% endif %}
+</div>
+</div>
+</body>
+</html>

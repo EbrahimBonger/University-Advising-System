@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Applicant Portal</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+
+  
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h3>
+      Welcome {{username}}!
+    </h3>
+
+    <p>UID: {{uid}}</p>
+
+    {% if user and semester %}
+
+      <p>Application Overview:</p>
+      <table>
+
+        <tr>
+          <th>Name: </th>
+          <th>{{fname}} {{lname}}</th>
+        </tr>
+        <tr>
+          <th>Semester: </th>
+          <th>{{semester}}</th>
+        </tr>
+        <tr>
+          <th>Degree: </th>
+          <th>{{degree}}</th>
+        </tr>
+        <tr>
+          <th>Status: </th>
+          <th>{{status}}</th>
+        </tr>
+
+
+      </table>
+
+      {% if missing|length > 0 %}
+
+        <p>Missing Items: </p>
+        <ul>
+          {% for i in range(missing|length) %}
+            <li>{{missing[i]}}</li>
+          {% endfor %}
+        </ul>
+
+        <p>
+          Request a letter of recommendation <a href="{{url_for('requestRecApps')}}">Here</a>
+        </p>
+
+        <p>
+        View or Edit Your Application  <a href="{{url_for('viewApplicationApps', UID=uid)}}">Here</a>
+        </p>
+
+      {% endif %}
+
+    {% else %}
+
+      <h4>You do not have an active application.</h4>
+      <p>Submit an application <a href="{{url_for('applicationApps')}}">Here!</a></p>
+
+    {% endif %}
+
+    {% if status == 'ACCEPTED!' %}
+        <h3>Accept you Application <a href="/admissions/accept">Here!</a></h3>
+    {% endif %}
+
+
+    
+  </body>
+</html>

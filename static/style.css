@@ -1,0 +1,158 @@
+table, th, td {
+    border: none;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 15px;
+    text-align: center;
+}
+
+.tablecenter {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.login {
+    border-radius: 20px;
+    background: #b6b5b5;
+    padding: 80px;
+    margin: 20 0 0 450px;
+    margin: auto;
+    overflow: hidden;
+    width: 382px;
+}
+
+.application {
+    font-size: 20px;
+    border-radius: 20px;
+    background: #b6b5b5;
+    padding: 60px;
+    margin: 20 0 0 450px;
+    margin: auto;
+    overflow: hidden;
+    width: 500px;
+}
+
+.submitLogin {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+    float:left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color:black;
+}
+
+.site-logo {
+    width: 80%;
+    height: auto;
+}
+
+header {
+    background-color: #1e8ac9;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.grid-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1px;
+    margin: 1em;
+    background-color: white;
+  }
+  
+.grid-product {
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    line-height: 1;
+    border-radius: 5px;
+}
+
+tbody {
+    counter-reset: rowNumber;
+}
+
+tbody tr {
+    counter-increment: rowNumber;
+}
+
+
+body{
+    background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+}
+.contact-form{
+    background: #fff;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}

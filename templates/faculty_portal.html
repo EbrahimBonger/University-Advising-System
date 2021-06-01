@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Faculty Portal</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h3>
+      Welcome {{username}}!
+    </h3>
+
+    <p>
+      View Active Applications <a href="{{url_for('viewAppsApps')}}">Here</a>
+    </p>
+    {% if role == 4 or role == 6 %}
+      <p>
+        View Reviewed Applications <a href="{{url_for('reviewedApps')}}">Here</a>
+      </p>
+    {% endif %}
+    
+    <p>
+      Find an Applicant <a href="{{url_for('findApplicantApps')}}">Here</a>
+    </p>
+
+    <p>
+      View Application Trends <a href="/admissions/trends">Here</a>
+    </p>
+
+    
+    <br>
+    <!-- <form action="/search" method="post">
+    <input id="searchBox" type="text" name="searchQ">
+    <input id="searchButton" type="submit" name="Search">
+    </form> -->
+    <br>
+  </body>
+</html>

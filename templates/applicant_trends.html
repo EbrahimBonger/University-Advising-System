@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Applicant Trends</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    <h2>Application Trends</h2>
+    <form action="/admissions/trends" method="post">
+        <label>Select Semester</label>
+        <select id="year" name="year">
+            {% for i in range(semesters|length) %}
+              <option value="{{semesters[i][0]}}">{{semesters[i][0]}}</option>
+            {% endfor %}
+          </select>
+        <input id="searchButton" type="submit" name="Search">
+    </form>
+
+    {% if year %}
+        <table>
+
+        <tr>
+            <th>Number of Applications</th>
+            <th>{{num_apps}}</th>
+        </tr>
+        <tr>
+            <th>Average Applicant GPA</th>
+            <th>{{avg_gpa}}</th>
+        </tr>
+        <tr>
+            <th>Average Masters Applicant GPA </th>
+            <th>{{avg_gpa_m}}</th>
+        </tr>
+        <tr>
+            <th>Average PhD Applicant GPA </th>
+            <th>{{avg_gpa_p}}</th>
+        </tr>
+        <tr>
+            <th>Average Applicant Verbal GRE</th>
+            <th>{{avg_greV}}</th>
+        </tr>
+        <tr>
+            <th>Average Masters Applicant Verbal GRE</th>
+            <th>{{avg_greV_m}}</th>
+        </tr>
+        <tr>
+            <th>Average PhD Applicant Verbal GRE</th>
+            <th>{{avg_greV_p}}</th>
+        </tr>
+        <tr>
+            <th>Average Applicant Quantitative GRE</th>
+            <th>{{avg_greQ}}</th>
+        </tr>
+        <tr>
+            <th>Average Masters Applicant Quantitative GRE</th>
+            <th>{{avg_greQ_m}}</th>
+        </tr>
+        <tr>
+            <th>Average PhD Applicant Quantitative GRE</th>
+            <th>{{avg_greQ_p}}</th>
+        </tr>
+
+        
+
+
+      </table>
+    {% endif %}
+
+    <br>
+  </body>
+</html>

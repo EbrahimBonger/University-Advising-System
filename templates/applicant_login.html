@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Applicant Portal Login</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+    <h3>Applicant Portal Login</h3>
+    <form action="{{url_for('loginApps')}}" method="POST">
+      <label for="username">Email</label><br>
+      <input type="email" id="username" name="username" required><br>
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password" required><br>
+      <input type="submit" name="submit">
+    </form>
+    <p>
+      New applicant? <a href="{{url_for('applicantRegisterApps')}}">Register</a> an account!
+    </p>
+
+    {% if credsInvalid %}
+    <h4>Username or password invalid</h4>
+    {% endif %}
+
+    </body>
+
+</html>

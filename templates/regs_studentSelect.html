@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+            <title> Select Students </title>
+            <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+        </head>
+        <body>
+
+
+            <header>
+                <div class = "site-logo">
+                    <h1>Village Inn University</h1>
+                </div>
+            </header>
+
+            <div class = "topnav">
+                <a href = "/"> Go Home </a>
+                <a href = "/studentInfo"> Account Information </a>
+                <a href = "/logout"> Logout </a>
+            </div>
+
+            <br>
+
+            <table class = "tablecenter" cellpadding = "10" cellspacing = "5">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Semester</th>
+                        <th>Year</th>
+                        <th>Grade</th>
+                        <th>View Transcript</th>
+                    </tr>
+                    <tr>
+                        {% for student in students %}
+                            <td> {{student.fname}} {{student.lname}} </td>
+                            <td> {{student.transSemester}} </td>
+                            <td> {{student.transAcademicYear}} </td>
+                            <td>
+                                {% if student.grade == "IP" or student.grade == null %}
+                                    <form action="{{ url_for('studentSelect', course=student.courseID, uid=student.UID)}}" method="POST">
+                                        <select name="grade" class = "submitLogin">
+                                        <option value="Keep Same">No Change</option>
+                                        <option value="IP">IP</option>
+                                        <option value="A">A</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B">B</option>
+                                        <option value="B-">B-</option>
+                                        <option value="C+">C+</option>
+                                        <option value="C">C</option>
+                                        <option value="C-">C-</option>
+                                        <option value="D+">D+</option>
+                                        <option value="D">D</option>
+                                        <option value="F">F</option>
+                                    </form>
+                                {% else %}
+                                    {{student.grade}}
+                                {% endif %}
+                            </td>
+                            <td><a href="{{ url_for('viewTranscript',  uid=student.UID)}}" class = "submitLogin">Transcript</a></td>
+                    </tr>
+                        {%endfor%}
+
+                </tbody>
+                </table>
+                <button type = "submit" class = "submitLogin"> Submit </button>
+        </body>
+    </html>

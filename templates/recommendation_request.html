@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Recommendation Request</title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/">Home</a>
+      <a href = "/admissions"> Admissions </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+
+    <h1 id="heading">Recommendation Request Form</h1>
+    <form action="{{url_for('requestRecApps')}}" method="POST">
+      
+      <p>Provide the email of the individual who can write you a recommendation letter</p>
+      <label for='email'>Email:</label><br>
+      <input type='email' id='email' name='email' required><br>
+      <input type="submit" name="submit">
+    </form>
+  </body>
+</html>

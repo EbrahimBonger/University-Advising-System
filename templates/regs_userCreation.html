@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> Create User </title>
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'style.css')}}"/>
+  </head>
+  
+  <body>
+
+    <header>
+      <div class = "site-logo">
+        <h1>Village Inn University</h1>
+      </div>
+    </header>
+
+    <div class = "topnav">
+      <a href = "/"> Go Home </a>
+      <a href = "/studentInfo"> Account Information </a>
+      <a href = "/logout"> Logout </a>
+    </div>
+
+    {{message}}<br>
+    <form action="/userCreation" method="POST">
+        <label for="type" style = "font-size:25px">Choose User Type:</label>
+        <select id="type" name="type" style = "font-size:25px">
+            <option value="Grad Secretary" style = "font-size:25px">Grad Secretary</option>
+            <option value="Faculty" style = "font-size:25px">Faculty</option>
+            <option value="CAC" style = "font-size:25px">Admissions Chair</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="email" style = "font-size:25px">Email</label>
+        <input type="text" name="email" required style = "font-size:25px">
+
+        <br>
+        <br>
+
+        <label for="fname" style = "font-size:25px">First Name</label>
+        <input type="text" name="fname" required style = "font-size:25px">
+
+        <br>
+        <br>
+    
+        <label for="lname" style = "font-size:25px">Last Name</label>
+        <input type="text" name="lname" required style = "font-size:25px">
+
+        <br>
+        <br>
+
+        <label for="address" style = "font-size:25px">Address</label>
+        <input type="text" name="address" required style = "font-size:25px">
+
+        <br>
+        <br>
+    
+        <label for="password" style = "font-size:25px">Password</label>
+        <input type="text" name="password" required style = "font-size:25px">
+
+        <br>
+        <br>
+
+        <label for = "SSN" style = "font-size:25px">SSN</label>
+        <input type = "text" name = "SSN" required style = "font-size:25px">
+
+        <br>
+        <br>
+
+        <label for = "phone" style = "font-size:25px">phone</label>
+        <input type = "text" name = "phone" required style = "font-size:25px">
+
+        <br>
+        <br>
+    
+        <button type="submit" class = "submitLogin">submit</button>
+    </form>
+  </body>
+</html>
